@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block title %}Home{% endblock title %}
+
+{% block content %}
+    <div class="container py-4">
+        <h2>Login</h2>
+        <form class="row gy-2 gx-3 align-items-center" action="" method="post">
+            {% csrf_token %}
+                <div class="row mb-3">
+                    {% for field in form %}
+                        <label class="col-sm-2 col-form-label" for="{{ field.id_for_label }}">{{ field.label }}</label>
+                        {{ field }}
+                        {% if field.help_text %}
+                            <p class="help-text">{{ field.help_text }}</p>
+                        {% endif %}
+
+                        {{ field.errors }}
+
+                    {% endfor %}
+
+                    {% for message in messages %}
+                        <div class="alert alert-danger alert-dismissible fade show my-3" role="alert">
+                              {{ message }}
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                    {% endfor %}
+                </div>
+                <div class="col-md-12 text-center py-3">
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <a href="{% url 'customuser:index' %}" class="btn btn-primary">Return to Home</a>
+                </div>
+        </form>
+    </div>
+{% endblock %}

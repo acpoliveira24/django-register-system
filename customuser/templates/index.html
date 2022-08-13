@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Home{% endblock title %}
+
+{% block content %}
+    <div class="container">
+        {% if request.user.is_authenticated %}
+            <img src="{% static 'img/party.png' %}" class="rounded mx-auto d-block" alt="Party">
+            <div class="py-5">
+                <p class="text-center fs-3 fw-bold">Hello {{ request.user.first_name }} {{ request.user.last_name }} <br>
+                    You are logged in!</p>
+            </div>
+            <div class="col-md-12 text-center py-3">
+                <a href="{% url 'customuser:logout' %}" class="btn btn-primary">Logout</a>
+            </div>
+        {% else %}
+            <div class="py-5">
+                <p class="text-center fs-4 ">Please, create an account or, if you're already registered, just sign in</p>
+            </div>
+            <div class="col-md-12 text-center py-3">
+                <a href="{% url 'customuser:signup' %}" class="btn btn-primary">Create account</a>
+                <a href="{% url 'customuser:login' %}" class="btn btn-primary">Login</a>
+            </div>
+        {% endif %}
+    </div>
+{% endblock %}

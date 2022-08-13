@@ -1,0 +1,9 @@
+__pycache__
+*.*~
+*.pyc
+.idea
+htmlcov/*
+/venv/*
+db.sqlite3
+.env
+staticfiles/
